@@ -1,0 +1,61 @@
+//promedio de notas
+function getAverage(scores) {
+  let totalScores = 0;
+
+  for (let i = 0; i < scores.length; i++) {
+    totalScores += scores[i];
+  }
+
+  let average = totalScores / scores.length;
+  return average;
+}
+
+console.log(getAverage([92, 88, 12, 77, 57, 100, 67, 38, 97, 89]));
+console.log(getAverage([45, 87, 98, 100, 86, 94, 67, 88, 94, 95]));
+//pasar notas a letras
+function getGrade(score) {
+  let grade;
+
+  if (score === 100) {
+    grade = "A++";
+  } else if (score >= 90 && score <= 99) {
+    grade = "A";
+  } else if (score >= 80 && score <= 89) {
+    grade = "B";
+  } else if (score >= 70 && score <= 79) {
+    grade = "C";
+  } else if (score >= 60 && score <= 69) {
+    grade = "D";
+  } else if (score >= 0 && score <= 59) {
+    grade = "F";
+  } else {
+    return "Nota inválida";
+  }
+
+  return grade;
+}
+
+console.log(getGrade(96)); 
+console.log(getGrade(82)); 
+console.log(getGrade(56)); 
+//mesaje si aprobo la materia(true or false)
+function hasPassingGrade(score) {
+ let condicion = false; 
+  if(score>59){
+    condicion = true;
+  }
+  return condicion;
+}
+//mensaje si aprobo la materia, con el promedio y su nota en letra
+function studentMsg(totalScores, studentScore) {
+const average = getAverage(totalScores);
+const grade = getGrade(studentScore);
+let mensaje="";
+  if (grade !== "F") {
+    mensaje = `Class average: ${average}. Your grade: ${grade}. You passed the course.`;
+  } else {
+    mensaje = `Class average: ${average}. Your grade: ${grade}. You failed the course.`;
+  }
+  return mensaje;
+}
+console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
